@@ -99,7 +99,7 @@ fs.accessSync(__dirname + req.params[0], fs.F_OK);
 console.log('ERR loading response ',err)
 	    
             res.writeHead(301, {
-                location: "/home/"
+                location: "/home/index.html"
             });
             return res.end();
 }
