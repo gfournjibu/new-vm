@@ -18,7 +18,20 @@ https = require('https');
 
 var request = require("request");
 
-/*
+var LE = require('greenlock');
+
+// Storage Backend
+var leStore = require('le-store-certbot').create({
+  configDir: '/root/certs'                          // or /etc/letsencrypt or wherever
+, debug: true
+});
+// ACME Challenge Handlers
+var leChallenge = require('le-challenge-fs').create({
+  webrootPath: '/root/fisi'                       // or template string such as
+, debug: true                                            // '/srv/www/:hostname/.well-known/acme-challenge'
+});
+
+
 
 le = LE.create({
     agreeToTerms: leAgree // hook to allow user to view and accept LE TOS
@@ -28,13 +41,9 @@ le = LE.create({
 
         ,
     challenges: {
-        'http-01': require('le-challenge-fs').create({
-            webrootPath: '/root/fisi'
-        })
+        'http-01': leChallenge
     },
-    store: require('le-store-certbot').create({
-            webrootPath: '/root/fisi'
-        })
+    store: leStore
         // handles saving of config, accounts, and certificates
         //, challenges: { 'http-01': leChallenge }                  // handles /.well-known/acme-challege keys and tokens
         ,
@@ -45,7 +54,7 @@ le = LE.create({
 });
 
 
-*/
+
 
 
 
@@ -98,35 +107,6 @@ installCerts = function(){
 
 'use strict';
 
-var LE = require('greenlock');
-/*
-// Storage Backend
-var leStore = require('le-store-certbot').create({
-  configDir: '/root/certs'                          // or /etc/letsencrypt or wherever
-, debug: true
-});
-// ACME Challenge Handlers
-var leChallenge = require('le-challenge-fs').create({
-  webrootPath: '/root/letsencrypt/var'                       // or template string such as
-, debug: true                                            // '/srv/www/:hostname/.well-known/acme-challenge'
-});
-*/
-
-
-le = LE.create({
- agreeToTerms: leAgree                                   // hook to allow user to view and accept LE TOS
-//,  server: LE.productionServerUrl                             // or LE.productionServerUrl
-, server: LE.stagingServerUrl 
-//, store: leStore 
-	
-, challenges: { 'http-01': require('le-challenge-fs').create({ webrootPath: '/root/fisi' }) }
-, store: require('le-store-certbot').create({ configDir: '/root/fisi' })
-// handles saving of config, accounts, and certificates
-//, challenges: { 'http-01': leChallenge }                  // handles /.well-known/acme-challege keys and tokens
-, challengeType: 'http-01'                                // default to this challenge type
-//, sni: require('le-sni-auto').create({})                // handles sni callback
-, debug: true
-});
 
 critiMSG="RUNNING ON INSECURE ENVIROMENT!!";
 /*
