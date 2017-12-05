@@ -327,8 +327,8 @@ console.log('Secure now online at https://localhost:' + PORT);
 
  
   try{
-     //OpenSecure();
-	  OpenInsecure();
+     OpenSecure();
+	//  OpenInsecure();
 
 
    }catch(err){
