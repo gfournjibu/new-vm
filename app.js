@@ -7,7 +7,7 @@ var LE = require('greenlock');
 var insPORT = 8081;
 var PORT = 8080;
 var allDomains=['mafisi.co.ke'];
-var bitsokoEmail = 'swahilisafarifame@gmail.com';
+var adminEmail = 'swahilisafarifame@gmail.com';
 
 var compress = require('compression');
 
@@ -116,7 +116,7 @@ function leAgree(opts, agreeCb) {
   // opts = { email, domains, tosUrl }
     opts = {
       domains: allDomains
-    , email: bitsokoEmail // user@example.com
+    , email: adminEmail // user@example.com
     , agreeTos: true
     }
   agreeCb(null, opts.tosUrl);
@@ -124,12 +124,12 @@ function leAgree(opts, agreeCb) {
 
 le = LE.create({
  agreeToTerms: leAgree                                   // hook to allow user to view and accept LE TOS
-,  server: LE.productionServerUrl                             // or LE.productionServerUrl
-//, server: LE.stagingServerUrl 
+//,  server: LE.productionServerUrl                             // or LE.productionServerUrl
+, server: LE.stagingServerUrl 
 //, store: leStore 
 	
-, challenges: { 'http-01': require('le-challenge-fs').create({ webrootPath: '/root/business' }) }
-, store: require('le-store-certbot').create({ webrootPath: '/root/business' })
+, challenges: { 'http-01': require('le-challenge-fs').create({ webrootPath: '/root/fisi' }) }
+, store: require('le-store-certbot').create({ webrootPath: '/root/fisi' })
 // handles saving of config, accounts, and certificates
 //, challenges: { 'http-01': leChallenge }                  // handles /.well-known/acme-challege keys and tokens
 , challengeType: 'http-01'                                // default to this challenge type
@@ -191,7 +191,7 @@ le.check({ domains: allDomains }).then(function (results) {
   le.register({
 
     domains: allDomains                                // CHANGE TO YOUR DOMAIN (list for SANS)
-  , email: bitsokoEmail                                 // CHANGE TO YOUR EMAIL
+  , email: adminEmail                                 // CHANGE TO YOUR EMAIL
   , agreeTos: true                                            // set to tosUrl string (or true) to pre-approve (and skip agreeToTerms)
   , rsaKeySize: 2048                                        // 2048 or higher
   , challengeType: 'http-01'                                // http-01, tls-sni-01, or dns-01
@@ -225,7 +225,7 @@ function leAgree(opts, agreeCb) {
     // opts = { email, domains, tosUrl }
     opts = {
         domains: allDomains,
-        email: bitsokoEmail // user@example.com
+        email: adminEmail // user@example.com
             ,
         agreeTos: true
     }
@@ -271,13 +271,13 @@ function createCert() {
 
 
         // Register Certificate manually
-        console.log('failed to register LE Certificate automatically, now trying manual registration');
+        //console.log('failed to register LE Certificate automatically, now trying manual registration');
 
         le.register({
 
             domains: allDomains // CHANGE TO YOUR DOMAIN (list for SANS)
                 ,
-            email: bitsokoEmail // CHANGE TO YOUR EMAIL
+            email: adminEmail // CHANGE TO YOUR EMAIL
                 ,
             agreeTos: true // set to tosUrl string (or true) to pre-approve (and skip agreeToTerms)
                 ,
