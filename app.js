@@ -112,15 +112,6 @@ var leChallenge = require('le-challenge-fs').create({
 });
 */
 
-function leAgree(opts, agreeCb) {
-  // opts = { email, domains, tosUrl }
-    opts = {
-      domains: allDomains
-    , email: adminEmail // user@example.com
-    , agreeTos: true
-    }
-  agreeCb(null, opts.tosUrl);
-}
 
 le = LE.create({
  agreeToTerms: leAgree                                   // hook to allow user to view and accept LE TOS
@@ -161,14 +152,14 @@ insapp.get(/^(.+)$/, function (req, res) {
 require('http').createServer(le.middleware(require('redirect-https')())).listen(insPORT, '0.0.0.0', function () {
   console.log("Listening for ACME http-01 challenges on", this.address());
 
- 
+ /*
  
 var app = require('express')();
 app.use('/', function (req, res) {
   res.end('waiting to become secure');
 });
 
-
+*/
 //
 // Otherwise you should see the test file for usage of this:
 // le.challenges['http-01'].get(opts.domain, key, val, done)
