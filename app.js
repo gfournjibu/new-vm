@@ -6,7 +6,7 @@ var jade = require('pug');
 var LE = require('greenlock');
 var insPORT = 8081;
 var PORT = 8080;
-var allDomains;
+var allDomains=['mafisi.co.ke'];
 var bitsokoEmail = 'swahilisafarifame@gmail.com';
 
 var compress = require('compression');
