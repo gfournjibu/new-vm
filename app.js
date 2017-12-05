@@ -160,7 +160,6 @@ insapp.get(/^(.+)$/, function (req, res) {
 	// handles acme-challenge and redirects to https 
 require('http').createServer(le.middleware(require('redirect-https')())).listen(insPORT, '0.0.0.0', function () {
   console.log("Listening for ACME http-01 challenges on", this.address());
-});
 
  
  
@@ -213,9 +212,11 @@ le.check({ domains: allDomains }).then(function (results) {
     console.error('[Error]: node-letsencrypt/examples/standalone');
     console.error(err.stack);
 console.log('certification failed. will try again in one hour');
- setTimeout(installCerts(), (60*60*1000)); 
+// setTimeout(installCerts(), (60*60*1000)); 
   });
 
+});
+	//end created listening port
 });
 	
 }
