@@ -23,18 +23,18 @@ var request = require("request");
 le = LE.create({
     agreeToTerms: leAgree // hook to allow user to view and accept LE TOS
         ,
-    server: LE.productionServerUrl // or LE.productionServerUrl
-        //, server: LE.stagingServerUrl 
+    //server: LE.productionServerUrl // or LE.productionServerUrl
+        , server: LE.stagingServerUrl 
         //, store: leStore 
 
         ,
     challenges: {
         'http-01': require('le-challenge-fs').create({
-            webrootPath: '/root/business'
+            webrootPath: '/root/fisi'
         })
     },
     store: require('le-store-certbot').create({
-            webrootPath: '/root/business'
+            webrootPath: '/root/fisi'
         })
         // handles saving of config, accounts, and certificates
         //, challenges: { 'http-01': leChallenge }                  // handles /.well-known/acme-challege keys and tokens
