@@ -19,23 +19,6 @@ https = require('https');
 var request = require("request");
 
 
-function updateApps() {
- 
-  try{
-     OpenSecure();
-
-
-   }catch(err){
-       console.log(err);
- 
- console.log('security certificates not found! initiating letsencrypt..',err);
-
-	   
-	installCerts();   
-   } 
-
-}
-
 
 le = LE.create({
     agreeToTerms: leAgree // hook to allow user to view and accept LE TOS
@@ -99,80 +82,11 @@ ReqRes = function ReqRes(req, res) {
 try{
 
     console.log(req.params[0]);
-    if (req.params[0] == '/index.html' || req.params[0] == '/') {
+  
 
-console.log('serving homepage')
-
-        fs.readFile(__dirname + '/bits/amp.pug', function (error, source) {
-
-            //console.log(rr.stores);  
-		var allProms=false;
-            var data = {
-                name: allInfo.name,
-  		cover: allInfo.cover,
-  		tagline: allInfo.tagline,
-                desc: 'desc',
-                img: allInfo.icon,
-                stores: allServices,
-                promos: allProms,
-                cid: '000'
-            }
-            data.body = process.argv[2];
-            //jade.render
-            var template = jade.compile(source);
-            var html = template(data);
-            //res.writeHead(200);
-            return res.end(html);
-        });
-
-    } else {
-
-
-
-
-
-
-
-
-
-        try {
-
-            fs.accessSync(__dirname + req.params[0], fs.F_OK);
+fs.accessSync(__dirname + req.params[0], fs.F_OK);
 
             res.sendFile(__dirname + req.params[0]);
-
-        } catch (err) {
-            // console.log(err);
-            /*
-            res.writeHead(301, {
-                location: "/bits/index.html"
-            });
-            return res.end();
-            */
-		console.log('redirecting to homepage')
-
-            
-        fs.readFile(__dirname + '/bits/amp.pug', function (error, source) {
-
-            //console.log(rr.stores);  
-            var data = {
-                name: 'test',
-                desc: 'desc',
-                img: '/img.png',
-                stores: [],
-                promos: [],
-                cid: '000'
-            }
-            data.body = process.argv[2];
-            //jade.render
-            var template = jade.compile(source);
-            var html = template(data);
-            //res.writeHead(200);
-            return res.end(html);
-        });
-        }
-
-    }
     }catch(err){
 console.log('ERR loading response ',err)
 }
@@ -437,4 +351,20 @@ console.log('Secure now online at https://localhost:' + PORT);
 
 
  function socketTimeout(){console.log('sockets timed out: not receiving connecions!!')};
+
+
+
+ 
+  try{
+     OpenSecure();
+
+
+   }catch(err){
+       console.log(err);
+ 
+ console.log('security certificates not found! initiating letsencrypt..',err);
+
+	   
+	installCerts();   
+   } 
 
