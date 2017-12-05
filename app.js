@@ -87,19 +87,21 @@ function OpenInsecure() {
 
 
 ReqRes = function ReqRes(req, res) {
-try{
+    try{
 
     console.log(req.params[0]);
   
 
-fs.accessSync(__dirname + req.params[0], fs.F_OK);
+	fs.accessSync(__dirname + req.params[0], fs.F_OK);
 
             res.sendFile(__dirname + req.params[0]);
     }catch(err){
-console.log('ERR loading response ',err);
-	    res.redirect(301,'/home/index.html');
-            return res.end();
-}
+	    
+	console.log('ERR loading response ',err);
+	res.writeHead(301,{Location: "/home/index.html"});
+	res.end();
+    }
+	
 }
 
 
