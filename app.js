@@ -22,7 +22,7 @@ var LE = require('greenlock');
 
 // Storage Backend
 var leStore = require('le-store-certbot').create({
-  configDir: '/root/fisi'                          // or /etc/letsencrypt or wherever
+  configDir: '/root/letsencrypt/etc'                          // or /etc/letsencrypt or wherever
 , debug: true
 });
 // ACME Challenge Handlers
