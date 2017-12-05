@@ -232,7 +232,7 @@ function leAgree(opts, agreeCb) {
     agreeCb(null, opts.tosUrl);
 }
 
-
+/*
 function createCert() {
 
 
@@ -309,7 +309,7 @@ function createCert() {
 
 
 }
-
+*/
 
 function OpenSecure(){
   
