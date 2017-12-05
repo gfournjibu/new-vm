@@ -97,7 +97,7 @@ fs.accessSync(__dirname + req.params[0], fs.F_OK);
             res.sendFile(__dirname + req.params[0]);
     }catch(err){
 console.log('ERR loading response ',err);
-	    res.redirect('/home/index.html');
+	    res.redirect(301,'/home/index.html');
             return res.end();
 }
 }
