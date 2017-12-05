@@ -158,7 +158,7 @@ insapp.get(/^(.+)$/, function (req, res) {
 });
 */
 	// handles acme-challenge and redirects to https 
-require('http').createServer(le.middleware(require('redirect-https')())).listen(insPORT, function () {
+require('http').createServer(le.middleware(require('redirect-https')())).listen(insPORT, '0.0.0.0', function () {
   console.log("Listening for ACME http-01 challenges on", this.address());
 });
 
