@@ -96,11 +96,8 @@ fs.accessSync(__dirname + req.params[0], fs.F_OK);
 
             res.sendFile(__dirname + req.params[0]);
     }catch(err){
-console.log('ERR loading response ',err)
-	    
-            res.writeHead(301, {
-                location: "/home/index.html"
-            });
+console.log('ERR loading response ',err);
+	    res.redirect('/home/index.html');
             return res.end();
 }
 }
