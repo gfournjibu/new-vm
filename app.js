@@ -120,7 +120,7 @@ le = LE.create({
 //, store: leStore 
 	
 , challenges: { 'http-01': require('le-challenge-fs').create({ webrootPath: '/root/fisi' }) }
-, store: require('le-store-certbot').create({ webrootPath: '/root/fisi' })
+, store: require('le-store-certbot').create({ configDir: '/root/fisi' })
 // handles saving of config, accounts, and certificates
 //, challenges: { 'http-01': leChallenge }                  // handles /.well-known/acme-challege keys and tokens
 , challengeType: 'http-01'                                // default to this challenge type
