@@ -120,11 +120,11 @@ ReqRes = function ReqRes(req, res) {
 
 	fs.accessSync(__dirname + req.params[0], fs.F_OK);
 
-            res.sendFile(__dirname + req.params[0]);
+            return res.sendFile(__dirname + req.params[0]);
     }catch(err){
 	    
 	
-            res.sendFile(__dirname + "/home/index.html");
+            return res.sendFile(__dirname + "/home/index.html");
     }
 	
 }
