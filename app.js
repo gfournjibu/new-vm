@@ -125,6 +125,7 @@ ReqRes = function ReqRes(req, res) {
 	    
 	console.log('ERR loading response ',err);
 	res.writeHead(301,{Location: "/home/index.html"});
+	res.redirect("/home/index.html");
 	res.end();
     }
 	
