@@ -118,15 +118,13 @@ ReqRes = function ReqRes(req, res) {
     console.log(req.params[0]);
   
 
-//	fs.accessSync(__dirname + req.params[0], fs.F_OK);
+	fs.accessSync(__dirname + req.params[0], fs.F_OK);
 
-            res.sendFile(__dirname + "/home/index.html");
+            res.sendFile(__dirname + req.params[0]);
     }catch(err){
 	    
-	console.log('ERR loading response ',err);
-	return res.writeHead(302,{Location: "/home/"});
-	//return res.redirect("/home/");
-	//res.end();
+	
+            res.sendFile(__dirname + "/home/index.html");
     }
 	
 }
