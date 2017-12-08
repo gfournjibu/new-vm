@@ -113,20 +113,30 @@ function OpenInsecure() {
 
 
 ReqRes = function ReqRes(req, res) {
+	
+	 if(req.params[0]=='/'){
+  
+            return res.sendFile(__dirname + "/home/index.html");
+  }else{
+  
+  
+            return res.sendFile(__dirname + req.params[0]);
+  
+  }
+	/*
     try{
 
     console.log(req.params[0]);
-  
+ 
 
 	fs.accessSync(__dirname + req.params[0], fs.F_OK);
 
             return res.sendFile(__dirname + req.params[0]);
     }catch(err){
-	    
+	    return res.sendFile(__dirname + "/home/index.html");
 	
-            return res.sendFile(__dirname + "/home/index.html");
     }
-	
+	*/
 }
 
 
