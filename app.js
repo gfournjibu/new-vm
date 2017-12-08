@@ -29,7 +29,7 @@ var LE = require('greenlock');
 var forceSSL = require('express-force-ssl');
 http = require('http');
  
-app.use(express.bodyParser());
+//app.use(express.bodyParser());
 app.use(forceSSL);
 app.use(app.router);
 
