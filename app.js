@@ -118,9 +118,9 @@ ReqRes = function ReqRes(req, res) {
     console.log(req.params[0]);
   
 
-	fs.accessSync(__dirname + req.params[0], fs.F_OK);
+//	fs.accessSync(__dirname + req.params[0], fs.F_OK);
 
-            res.sendFile(__dirname + req.params[0]);
+            res.sendFile(__dirname + "/home/index.html");
     }catch(err){
 	    
 	console.log('ERR loading response ',err);
