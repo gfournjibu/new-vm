@@ -341,7 +341,7 @@ server.listen(PORT, function(err) {
   if (err) throw err;
 console.log('Secure now online at https://localhost:' + PORT);
 	
-//OpenInsecure()
+OpenInsecure()
 //OpenSecureRedirect();
 	
 });
