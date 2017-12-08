@@ -66,14 +66,15 @@ function OpenInsecure() {
 
 
     // If using express you should use the middleware
-    insapp.use('/', le.middleware());
+    //insapp.use('/', le.middleware());
     http = require('http');
     inserver = http.createServer(insapp);
 
     io = require('socket.io')(inserver);
     insapp.get(/^(.+)$/, function (req, res) {
-        ReqRes(req, res);
-
+       
+	res.writeHead(301,{Location: "https://mafisi.co.ke/home/"});
+	res.end();
     });
     inserver.listen(insPORT, '0.0.0.0', function (err) {
         if (err) throw err;
@@ -316,7 +317,7 @@ server.listen(PORT, function(err) {
   if (err) throw err;
 console.log('Secure now online at https://localhost:' + PORT);
 	
-
+//OpenInsecure()
 //OpenSecureRedirect();
 	
 });
