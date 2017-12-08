@@ -20,6 +20,35 @@ var request = require("request");
 
 var LE = require('greenlock');
 
+
+
+
+
+
+
+var forceSSL = require('express-force-ssl');
+http = require('http');
+ 
+app.use(express.bodyParser());
+app.use(forceSSL);
+app.use(app.router);
+
+    app.use(compress());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Storage Backend
 var leStore = require('le-store-certbot').create({
   configDir: '/root/letsencrypt/etc'                          // or /etc/letsencrypt or wherever
@@ -61,17 +90,12 @@ le = LE.create({
 
 function OpenInsecure() {
 
-    insapp = express();
-    insapp.use(compress());
-
-
     // If using express you should use the middleware
     //insapp.use('/', le.middleware());
-    http = require('http');
-    inserver = http.createServer(insapp);
+    inserver = http.createServer(app);
 
     io = require('socket.io')(inserver);
-    insapp.get(/^(.+)$/, function (req, res) {
+    app.get(/^(.+)$/, function (req, res) {
        
 	res.writeHead(301,{Location: "https://mafisi.co.ke/home/"});
 	res.end();
@@ -295,8 +319,7 @@ function OpenSecure(){
     cert: fs.readFileSync('/root/letsencrypt/etc/live/'+allDomains[0]+'/fullchain.pem'),
     ca: [fs.readFileSync('/root/letsencrypt/etc/live/'+allDomains[0]+'/chain.pem')] // <----- note this part
 };   
-  
-app.use(compress());  
+   
 server = https.createServer(servCerts, app);
     
 io = require('socket.io')(server);
