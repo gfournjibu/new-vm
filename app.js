@@ -31,7 +31,8 @@ http = require('http');
  
 //app.use(express.bodyParser());
 app.use(forceSSL);
-app.use(app.router);
+
+//app.use(app.router);
 
     app.use(compress());
 
